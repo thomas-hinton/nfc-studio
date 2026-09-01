@@ -1,0 +1,9 @@
+dist/
+*.nfcbak
+*.pdb
+*.user
+*.suo
+.vs/
+work/
+*.zip
+

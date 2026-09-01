@@ -1,0 +1,78 @@
+NFC STUDIO — GUIDE RAPIDE
+========================
+
+Matériel prévu
+--------------
+- Lecteur ACS ACR122 / ACR122U utilisant l'interface Windows PC/SC.
+- NTAG213, NTAG215 et NTAG216 (ou puces compatibles avec la même organisation mémoire).
+- MIFARE Classic 1K et cartes compatibles, dont Fudan FM1108/FM11RF08.
+
+Démarrage
+---------
+1. Branchez le lecteur avant de lancer NfcStudio.exe.
+2. Posez une seule puce au centre du lecteur.
+3. Attendez que son type et son UID apparaissent.
+4. Le logiciel lit automatiquement son contenu sans le modifier.
+
+Formats d'écriture
+------------------
+- Texte UTF-8 : accepte lettres, chiffres, accents et caractères spéciaux.
+- URL NFC : sur NTAG213, crée un véritable message NDEF ouvrable par téléphone.
+- Hexadécimal brut : accepte seulement 0 à 9 et A à F, par paires (exemple : 01 FF A2).
+
+La bordure de la zone d'édition devient rouge quand le format est invalide ou quand
+le contenu dépasse la capacité. Le bouton Écrire est alors désactivé. Le compteur
+indique le nombre d'octets réellement nécessaires, car un accent ou un symbole peut
+prendre plusieurs octets en UTF-8.
+
+MIFARE Classic / Fudan
+----------------------
+- La clé d'usine proposée est FFFFFFFFFFFF.
+- Sélectionnez A ou B selon la clé utilisée par la carte.
+- NFC Studio réserve les secteurs 1 à 15 à son contenu structuré : 720 octets.
+- La capacité physique totale de données est 752 octets ; les deux blocs de données
+  supplémentaires du secteur 0 sont conservés pendant une écriture normale.
+- Le logiciel ne modifie jamais les sector trailers, les clés ou les bits d'accès.
+
+Famille NTAG21x
+---------------
+- NTAG213 : 144 octets de zone utilisateur.
+- NTAG215 : 504 octets de zone utilisateur.
+- NTAG216 : 888 octets de zone utilisateur.
+- Le modèle et la capacité sont détectés automatiquement depuis la page de capacité
+  de la puce ; le compteur et la limite d'écriture s'adaptent immédiatement.
+- Les textes et URL sont écrits au format NFC NDEF.
+- Les enregistrements NDEF longs sont pris en charge sur NTAG215 et NTAG216.
+- L'UID, les pages fabricant, les verrous et la configuration sont préservés.
+- Si des bits de verrouillage définitifs sont détectés, l'écriture automatique est
+  bloquée afin d'éviter une écriture partielle.
+
+Boutons
+-------
+- Relire : relit la puce sans modification.
+- Écrire : crée d'abord une sauvegarde automatique, écrit, relit et vérifie.
+- Sauvegarder : enregistre un fichier .nfcbak choisi par l'utilisateur.
+- Restaurer : restaure uniquement les données utilisateur d'un fichier .nfcbak.
+- Réinitialiser : efface les zones de données, sans modifier UID, fabricant, clés,
+  bits d'accès ou configuration. Une sauvegarde automatique est créée avant.
+
+Sauvegardes automatiques
+------------------------
+Elles sont enregistrées dans :
+%LOCALAPPDATA%\NfcStudio\Backups
+
+Limites importantes
+-------------------
+- Une Fudan et une MIFARE Classic originale peuvent être identiques du point de vue
+  du protocole. Les deux cartes testées sont reconnues précisément par leur UID ;
+  une nouvelle carte compatible inconnue est affichée comme fabricant indéterminé.
+- Une clé Classic inconnue n'est pas contournée par le logiciel.
+- Un UID usine et des bits NTAG verrouillés définitivement ne sont pas réinitialisables.
+- Une réinitialisation NFC Studio n'est pas une remise à zéro des paramètres de
+  sécurité : ceux-ci sont volontairement conservés.
+- Utilisez uniquement le logiciel avec vos propres cartes et systèmes.
+
+Version
+-------
+Version 1.1 Windows — 26 août 2026.
+
