@@ -2,6 +2,10 @@
 
 Application Windows pour lire, écrire, sauvegarder, restaurer et réinitialiser des puces NFC avec un lecteur **ACS ACR122 / ACR122U** utilisant l’interface PC/SC de Windows.
 
+## Aperçu du logiciel
+
+![Interface de NFC Studio détectant une puce NTAG215](docs/images/nfc-studio-ntag215.png)
+
 ## Téléchargement
 
 L’exécutable prêt à l’emploi se trouve dans [`release/NfcStudio.exe`](release/NfcStudio.exe).
